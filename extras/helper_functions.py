@@ -109,6 +109,7 @@ def make_confusion_matrix(y_true, y_pred, classes=None, figsize=(10, 10), text_s
   if savefig:
     fig.savefig("confusion_matrix.png")
   
+  
 # Make a function to predict on images and plot them (works with multi-class)
 def pred_and_plot(model, filename, class_names):
   """
@@ -285,4 +286,19 @@ def calculate_results(y_true, y_pred):
                   "precision": model_precision,
                   "recall": model_recall,
                   "f1": model_f1}
+  return model_results
+  
+def calculate_results(y_true,y_pred):
+  """
+  Calculate model accuracy,precision,recall and f1 score of a binary classification
+
+  """
+  #claculate model accuracy
+  model_accuracy = accuracy_score(y_true,y_pred) * 100
+  # calculate model precision,recall and f1-score using "weighted" average
+  model_precision,model_recall,model_f1,_ = precision_recall_fscore_support(y_true,y_pred,average ="weighted" )
+  model_results = {"accuracy": model_accuracy,
+                   "precision": model_precision,
+                   "recall":model_recall,
+                   "f1":model_f1}
   return model_results
