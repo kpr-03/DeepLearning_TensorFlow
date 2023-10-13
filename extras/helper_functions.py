@@ -288,17 +288,3 @@ def calculate_results(y_true, y_pred):
                   "f1": model_f1}
   return model_results
   
-def calculate_results(y_true,y_pred):
-  """
-  Calculate model accuracy,precision,recall and f1 score of a binary classification
-
-  """
-  #claculate model accuracy
-  model_accuracy = accuracy_score(y_true,y_pred) * 100
-  # calculate model precision,recall and f1-score using "weighted" average
-  model_precision,model_recall,model_f1,_ = precision_recall_fscore_support(y_true,y_pred,average ="weighted" )
-  model_results = {"accuracy": model_accuracy,
-                   "precision": model_precision,
-                   "recall":model_recall,
-                   "f1":model_f1}
-  return model_results
